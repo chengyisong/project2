@@ -1,0 +1,37 @@
+{{!-- This is where user either log in or create a profile to store the score... --}}
+
+
+<h2>Sign in to Store Your Highest Score: </h2>
+<form class="clearfix mb-4" action="PUT">
+    <div class="form-group">
+        <label for="userName">User Name</label>
+        <input type="text" id="signInName" class="form-control" placeholder="Enter Your Name">
+    </div>
+    <div class="form-group">
+        <label for="userPass">Password</label>
+        <input type="text" id="signInPass" class="form-control" placeholder="Enter Your Password">
+    </div>
+    <button id="signInBtn" class="btn btn-primary float-right">Sign In</button>
+</form>
+
+<hr>
+<h2>Or... Create a New Account</h2>
+<form class="clearfix mb-4" action="POST">
+    <div class="form-group">
+        <label for="userName">User Name</label>
+        <input type="text" id="createName" class="form-control" placeholder="Enter Your Name">
+    </div>
+    <div class="form-group">
+        <label for="userPass">Password</label>
+        <input type="text" id="createPass" class="form-control" placeholder="Enter Your Password">
+    </div>
+    <div class="form-group">
+        <label for="picURL">Profile Picture</label>
+        <input type="text" id="createPic" class="form-control" placeholder="Enter a URL for your profile picture">
+    </div>
+    <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="createPass" class="form-control" placeholder="Enter the City You Live in">
+    </div>
+    <button id="createBtn" class="btn btn-primary float-right">Create Account and Store My Score</button>
+</form>
