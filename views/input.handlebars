@@ -1,41 +1,105 @@
 {{!-- This is where user either log in or create a profile to store the score... --}}
 
+<div class="container">
+    <nav class="fixed-top navbar-dark bg-primary">
+        <h1>Record Your Highest Score!</h1>
+    </nav>
 
-<h2>Sign in to Store Your Highest Score: </h2>
-<form class="clearfix mb-4" action="PUT">
-    <div class="form-group">
-        <label for="userName">User Name</label>
-        <input type="text" id="signInName" class="form-control" placeholder="Enter Your Name">
-    </div>
-    <div class="form-group">
-        <label for="userPass">Password</label>
-        <input type="text" id="signInPass" class="form-control" placeholder="Enter Your Password">
-    </div>
-    <button id="signInBtn" class="btn btn-primary float-right">Sign In</button>
-</form>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Sign in to Your Account: </h3>
+                    <form class="clearfix mb-4" action="PUT">
+                        <div class="form-group">
+                            <label for="userName">User Name</label>
+                            <input type="text" id="signInName" class="form-control" placeholder="Enter Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="userPass">Password</label>
+                            <input type="text" id="signInPass" class="form-control" placeholder="Enter Your Password">
+                        </div>
+                        <button id="signInBtn" class="btn btn-primary float-right">Sign In</button>
+                    </form>
 
-<hr>
-<h2>Or... Create a New Account</h2>
-<form class="clearfix mb-4" action="POST">
-    <div class="form-group">
-        <label for="userName">User Name</label>
-        <input type="text" id="createName" class="form-control" placeholder="Enter Your Name">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Or... Create a New Account</h2>
+                    <form class="clearfix mb-4" action="POST">
+                        <div class="form-group">
+                            <label for="userName">User Name</label>
+                            <input type="text" id="createName" class="form-control" placeholder="Enter Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="userPass">Password</label>
+                            <input type="text" id="createPass" class="form-control" placeholder="Enter Your Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="picURL">Profile Picture</label>
+                            <input type="text" id="createPic" class="form-control" placeholder="Enter a URL for your profile picture">
+                        </div>
+                        <div class="form-group">
+                            <label for="catDog">Cat Person or Dog Person? </label>
+                            <select name="catDog">
+                                <option value="volvo">I love cats! Meow!</option>
+                                <option value="saab">Dogs are cuter! Woof!</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City You Live In: </label>
+                            <select name="city">
+                                <option value="bellevue">Bellevue</option>
+                                <option value="bothell">Bothell</option>
+                                <option value="issaquah">Issaquah</option>
+                                <option value="kirkland">Kirkland</option>
+                                <option value="lynwood">Lynwood</option>
+                                <option value="mercer">Mercer Island</option>
+                                <option value="redmond">Redmond</option>
+                                <option value="renton">Renton</option>
+                                <option value="seattle">Seattle</option>
+                                <option value="shoreline">Shoreline</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <button id="createBtn" class="btn btn-primary float-right">Create Account and Store My
+                            Score</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="userPass">Password</label>
-        <input type="text" id="createPass" class="form-control" placeholder="Enter Your Password">
-    </div>
-    <div class="form-group">
-        <label for="picURL">Profile Picture</label>
-        <input type="text" id="createPic" class="form-control" placeholder="Enter a URL for your profile picture">
-    </div>
-        <div class="form-group">
-        <label for="picURL">Gender</label>
-        <input type="text" id="createGender" class="form-control" placeholder="Enter a URL for your profile picture">
-    </div>
-    <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" id="createCity" class="form-control" placeholder="Enter the City You Live in">
-    </div>
-    <button id="createBtn" class="btn btn-primary float-right">Create Account and Store My Score</button>
-</form>
+</div>
+
+
+<style>
+    h1 {
+        text-align: center;
+    }
+
+    .fixed-top {
+        margin-bottom: 130px;
+    }
+
+    .row {
+        margin-top: 80px;
+    }
+
+    .card {
+        height: 500px;
+    }
+
+    #signInBtn {
+        margin-top: 185px;
+    }
+
+    select {
+        width: 250px;
+        float: right;
+    }
+</style>
