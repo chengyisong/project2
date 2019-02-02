@@ -3,21 +3,30 @@ var db = require("../models");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+    db.users.findAll({}).then(function(dbUsers) {
       res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
+        msg: "See who is playing",
+        users: dbUsers
       });
     });
   });
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbExample
+  app.get("/home", function(req, res) {
+    db.users.findAll({}).then(function(dbUsers) {
+      res.render("index", {
+        msg: "See who is playing",
+        users: dbUsers
+      });
+    });
+  });
+
+  // Load users page and pass in an users by id
+  app.get("/user/:id", function(req, res) {
+    db.users.findOne({ where: { id: req.params.id } }).then(function(
+      dbUser
     ) {
-      res.render("example", {
-        example: dbExample
+      res.render("/userfile", {
+        user: dbUser
       });
     });
   });
@@ -26,4 +35,20 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
+
+  // Render game page for any unmatched routes
+  app.get("/game", function(req, res) {
+    res.render("game");
+  });
+
+  // Render input form page for any unmatched routes
+  app.get("/signin", function(req, res) {
+    res.render("input");
+  });
+  
+  // Render score page for any unmatched routes
+  app.get("/score", function(req, res) {
+    res.render("scoreDisplay");
+  });
+
 };
