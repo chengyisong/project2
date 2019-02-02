@@ -43,10 +43,9 @@ module.exports = function(app) {
   app.get("/signin", function(req, res) {
     res.render("input");
   });
-  
+
   // Render score page for any unmatched routes
   app.get("/score", function(req, res) {
     res.render("scoreDisplay");
   });
-  
 };
