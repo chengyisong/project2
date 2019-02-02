@@ -3,7 +3,8 @@ var db = require("../models");
 module.exports = function(app) {
   // Get all examples
   app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+    db.users.findAll({}).then(function(dbExamples) {
+      console.log(dbExamples);
       res.json(dbExamples);
     });
   });

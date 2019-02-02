@@ -7,6 +7,6 @@ module.exports = function(sequelize, DataTypes) {
     city: DataTypes.STRING,
     password: DataTypes.STRING
   });
- 
+
   return users;
 };
