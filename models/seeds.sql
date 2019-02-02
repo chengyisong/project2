@@ -1,3 +1,5 @@
+USE DATABASE game_db;
+
 INSERT INTO players (userName, highsSore, photoUrl, dogOrCat, city)
 VALUES ("Kitty", 768, "https://cdn3.vectorstock.com/i/1000x1000/01/77/businesswoman-character-avatar-icon-vector-12800177.jpg", "cat", "Seattle");
 
