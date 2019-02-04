@@ -1,5 +1,3 @@
-
-
 -- DROP DATABASE IF EXISTs usersDB;
 
 USE  usersDB;
