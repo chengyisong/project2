@@ -7,12 +7,15 @@ module.exports = function(app) {
       res.json(dbUsers);
     });
   });
-  
-    app.highScore("/api/users", function(req, res) {
-    db.users.findAll({
-      limit: 10,  
-      order: [['currenthighscore', 'DESC']]}).then(function(dbUsers) {
-      res.json(dbUsers);
+ 
+  // Show top ten high score in decending order
+  app.highScore("/api/users", function(req, res) {
+    db.users.
+      findAll({
+        limit: 10,  
+        order: [["currenthighscore", "DESC"]]
+      }).then(function(dbUsers) {
+         res.json(dbUsers);
     });
   });
 
