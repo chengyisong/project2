@@ -7,6 +7,14 @@ module.exports = function(app) {
       res.json(dbUsers);
     });
   });
+  
+    app.highScore("/api/users", function(req, res) {
+    db.users.findAll({
+      limit: 10,  
+      order: [['currenthighscore', 'DESC']]}).then(function(dbUsers) {
+      res.json(dbUsers);
+    });
+  });
 
   // Create a new user
   app.post("/api/users", function(req, res) {
