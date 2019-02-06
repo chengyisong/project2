@@ -1,3 +1,23 @@
 {{!-- This is the welcome page of our app --}}
 {{!-- When they click "play", then will be directed to the "game" page --}}
-<h1>Game Title</h1>
+<div class="container">
+    <h1>SnowBirding</h1>
+
+    <div class="instruction">
+        <p>Press Start to start the game!</p>
+        <p>Press Space Bar to Jump</p>
+        <br>
+        <button id="startBtn">Start</button>
+
+    </div>
+
+
+    <br>
+
+    <canvas id="myCanvas" width="700" height="220"></canvas>
+    <p class="scoreLabel"> Your Score: <span id="score"></span></p>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./js/game.js"></script>

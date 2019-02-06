@@ -9,7 +9,7 @@ module.exports = function(app) {
   });
 
   // Show top ten high score in decending order
-  app.highScore("/api/users", function(req, res) {
+  app.get("/api/users", function(req, res) {
     db.users
       .findAll({
         limit: 10,
