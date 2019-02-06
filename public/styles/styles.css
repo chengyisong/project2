@@ -1,3 +1,29 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+
+.scoreLabel {
+  text-align: center;
+  font-size: 30px;
+}
+
+.instruction {
+  text-align: center;
+  font-size: 25px;
+  font-style: italic;
+}
+
+#score {
+  font-weight: bold;
+  color: red;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+}
+
+canvas {
+  margin-left:18%;
+}
