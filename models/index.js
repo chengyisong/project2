@@ -36,6 +36,8 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
+console.table(db.users)
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
