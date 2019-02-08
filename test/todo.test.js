@@ -20,14 +20,13 @@ describe("GET /", function() {
   it("should find all examples", function(done) {
     // Add some examples to the db to test with
     db.users.bulkCreate([
-      { name: "First Example" },
-      { name: "Second Example" }
+      { name: "First Example"},
+      { name: "Second Example"}
     ]).then(function() {
-      // Request the route that returns all examples
-      request.get("/api/examples").end(function(err, res) {
+    // Request the route that returns all examples
+      request.get("/api/users").end(function(err, res) {
         var responseStatus = res.status;
         var responseBody = res.body;
-
         // Run assertions on the response
 
         expect(err).to.be.null;
@@ -35,7 +34,9 @@ describe("GET /", function() {
         expect(responseStatus).to.equal(200);
 
         expect(responseBody)
+
           .to.be.an("array")
+
           .that.has.lengthOf(2);
 
         expect(responseBody[0])
@@ -45,10 +46,13 @@ describe("GET /", function() {
         expect(responseBody[1])
           .to.be.an("object")
           .that.includes({ name: "Second Example" });
-
-        // The `done` function is used to end any asynchronous tests
+  
         done();
       });
     });
   });
+
+
+
+  
 });
