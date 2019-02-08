@@ -5,6 +5,10 @@
 USE  usersDB;
 
 
+alter table users change column createdAt createdAt datetime Not Null Default Current_Timestamp;
+
+alter table users change column updatedAt updatedAt datetime Not Null Default Current_Timestamp;
+
 INSERT INTO users (name, currenthighscore, pictureurl, gender, city, password) 
 VALUES ("Kitty", 768, "https://cdn3.vectorstock.com/i/1000x1000/01/77/businesswoman-character-avatar-icon-vector-12800177.jpg", "cat", "Seattle","1234");
 
