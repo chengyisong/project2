@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     currenthighscore: DataTypes.STRING,
     pictureurl: DataTypes.STRING,
-    gender: DataTypes.STRING,
+    catDog: DataTypes.STRING,
     city: DataTypes.STRING,
     password: DataTypes.STRING
   });
