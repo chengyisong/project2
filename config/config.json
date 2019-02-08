@@ -10,7 +10,7 @@
     "username": "root",
     "password": null,
     "database": "testdb",
-    "host": "localhost",
+    "host": "",
     "dialect": "mysql",
     "logging": false
   },
