@@ -29,11 +29,6 @@ module.exports = function(app) {
     });
   });
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
-
   // Render game page for any unmatched routes
   app.get("/game", function(req, res) {
     res.render("game");
@@ -46,6 +41,16 @@ module.exports = function(app) {
 
   // Render score page for any unmatched routes
   app.get("/score", function(req, res) {
-    res.render("scoreDisplay");
+    db.users.findAll({}).then(function(dbUsers) {
+      res.render("scoreDisplay", {
+        msg: "See who is playing",
+        users: dbUsers
+      });
+    });
+  });
+
+  // Render 404 page for any unmatched routes
+  app.get("*", function(req, res) {
+    res.render("404");
   });
 };
