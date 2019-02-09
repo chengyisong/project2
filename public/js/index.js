@@ -1,17 +1,6 @@
-// Get refrences to sign in
-var $name = $("#signInName").val().trim();
-var $password = $("#signInPassn").val().trim();
-var $signIn = $("#signInBtn").val().trim();
-
-//get refrences to create an account
-let $newName = $("#createName").val().trim();
-let $newPass = $("#createPass").val().trim();
-let $pic = $("#createPic").val().trim();
-let $catOrDog = $("#catDog").val().trim();
-let $city = $("#city").val().trim();
-
-var $usersList = $("#users-list");
+//var $usersList = $("#users-list");
 var $createUser = $("#createBtn");
+var $signIn = $("#signInBtn");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -24,6 +13,10 @@ var API = {
       url: "api/users",
       data: JSON.stringify(users)
     });
+
+    
+  
+
   },
   getusers: function() {
     return $.ajax({
@@ -40,38 +33,44 @@ var API = {
 };
 
 // refresh users gets new users from the db and repopulates the list
-var refreshUsers = function() {
-  API.getusers().then(function(data) {
-    var $users = data.map(function(users) {
-      var $a = $("<a>")
-        .text(newUsers.text)
-        .attr("href", "/users/" + newUsers.id);
+// var refreshUsers = function() {
+//   API.getusers().then(function(data) {
+//     var $users = data.map(function(users) {
+//       var $a = $("<a>")
+//         .text(newUsers.text)
+//         .attr("href", "/users/" + newUsers.id);
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": newUsers.id
-        })
-        .append($a);
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": newUsers.id
+//         })
+//         .append($a);
 
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("ｘ");
 
-      $li.append($button);
+//       $li.append($button);
 
-      return $li;
-    });
+//       return $li;
+//     });
 
-    $usersList.empty();
-    $usersList.append($users);
-  });
-};
+//     $usersList.empty();
+//     $usersList.append($users);
+//   });
+// };
 
 // createNewUser is called whenever we submit a new users
 // Save the new users to the db and refresh the list
 var createNewUser = function(event) {
   event.preventDefault();
+//get refrences to create an account
+let $newName = $("#createName").val().trim();
+let $newPass = $("#createPass").val().trim();
+let $pic = $("#createPic").val().trim();
+let $catOrDog = $("#catDog").val().trim();
+let $city = $("#city").val().trim();
 
   var newUsers = {
       name: $newName,
@@ -81,23 +80,27 @@ var createNewUser = function(event) {
       city: $city,
   };
 
-  if (!(newUsers.name && newUsers.password && newUsers.catDog && newUsers.pic && newUsers.city)) {
+  if (!(newUsers.name && 
+        newUsers.password && 
+        newUsers.catDog && 
+        newUsers.pic && 
+        newUsers.city)) {
     alert("You left a few fileds blank");
     return;
   }
 
-  API.saveusers(newUsers).then(function() {
-    refreshUsers();
-  });
+  console.log(newUsers)
+  
+  API.saveusers(newUsers)
 
-  $newName.val("");
-  $catOrDog.val("");
-  $city.val("");
 };
-
 
 var signIn = function(event) {
   event.preventDefault();
+  // Get refrences to sign in
+  var $name = $("#signInName").val().trim();
+  var $password = $("#signInPassn").val().trim();
+  var $signIn = $("#signInBtn").val().trim();
 
   var users = {
       name: $name,
@@ -109,9 +112,7 @@ var signIn = function(event) {
     return;
   }
 
-  API.saveusers(users).then(function() {
-    refreshUsers();
-  });
+  API.saveusers(users)
 
   console.log(users)
 };
@@ -133,4 +134,5 @@ var handleDeleteBtnClick = function() {
 
 
 $createUser.on("click", createNewUser);
-$usersList.on("click", ".delete", handleDeleteBtnClick);
+$signIn.on("click", createNewUser);
+//$usersList.on("click", ".delete", handleDeleteBtnClick);
