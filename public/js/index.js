@@ -7,7 +7,7 @@ var $signIn = $("#signInBtn");
 // var someOtherPlaintextPassword = 'not_bacon';
 
 let score = localStorage.getItem("currentScore")
-$("#score").text(score)
+    $("#score").text(score)
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -27,10 +27,10 @@ var API = {
       type: "GET"
     });
   },
-  deleteusers: function(id) {
+  updateUsers: function(id) {
     return $.ajax({
       url: "api/users/" + id,
-      type: "DELETE"
+      type: "PUT"
     });
   }
 };
@@ -75,9 +75,9 @@ var signIn = function(event) {
   // Get refrences to sign in
   var $name = $("#signInName").val().trim();
   var $password = $("#signInPassn").val().trim();
-  var $signIn = $("#signInBtn").val().trim();
 
   var users = {
+      score: score,
       name: $name,
       password: $password,
   };
@@ -87,26 +87,14 @@ var signIn = function(event) {
     return;
   }
 
-  API.saveusers(users)
+  API.updateUsers(users)
 
   console.log(users)
 };
 
-
-// handleDeleteBtnClick is called when an users's delete button is clicked
-// Remove the users from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteusers(idToDelete).then(function() {
-    refreshUsers();
-  });
-};
-
 // Add event listeners to the submit and delete buttons
 
+console.log("tst")
 $createUser.on("click", createNewUser);
 $signIn.on("click", createNewUser);
 //$usersList.on("click", ".delete", handleDeleteBtnClick);
@@ -137,5 +125,17 @@ $signIn.on("click", createNewUser);
 
 //     $usersList.empty();
 //     $usersList.append($users);
+//   });
+// };
+
+// handleDeleteBtnClick is called when an users's delete button is clicked
+// Remove the users from the db and refresh the list
+// var handleDeleteBtnClick = function() {
+//   var idToDelete = $(this)
+//     .parent()
+//     .attr("data-id");
+
+//   API.deleteusers(idToDelete).then(function() {
+//     refreshUsers();
 //   });
 // };
