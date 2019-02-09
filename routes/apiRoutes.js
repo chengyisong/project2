@@ -34,4 +34,16 @@ module.exports = function(app) {
         res.json(dbPost);
       });
   });
+    app.put("/api/users", function(req, res) {
+    db.users
+      .update(users, {
+        where: {
+          name: req.body.name,
+          password: req.body.password
+        }
+      })
+      .then(function(dbUsers) {
+        console.log(dbUsers);
+        res.json(dbUsers);
+      });
 };
