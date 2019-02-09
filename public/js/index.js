@@ -6,6 +6,9 @@ var $signIn = $("#signInBtn");
 // var myPlaintextPassword = 's0/\/\P4$$w0rD';
 // var someOtherPlaintextPassword = 'not_bacon';
 
+let score = localStorage.getItem("currentScore")
+$("#score").text(score)
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveusers: function(users) {
@@ -32,35 +35,6 @@ var API = {
   }
 };
 
-// refresh users gets new users from the db and repopulates the list
-// var refreshUsers = function() {
-//   API.getusers().then(function(data) {
-//     var $users = data.map(function(users) {
-//       var $a = $("<a>")
-//         .text(newUsers.text)
-//         .attr("href", "/users/" + newUsers.id);
-
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": newUsers.id
-//         })
-//         .append($a);
-
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $usersList.empty();
-//     $usersList.append($users);
-//   });
-// };
-
 // createNewUser is called whenever we submit a new users
 // Save the new users to the db and refresh the list
 var createNewUser = function(event) {
@@ -74,6 +48,7 @@ let $city = $("#city").val().trim();
 
   var newUsers = {
       name: $newName,
+      score: score,
       password: $newPass,
       catDog: $catOrDog,
       pic: $pic,
@@ -132,7 +107,35 @@ var handleDeleteBtnClick = function() {
 
 // Add event listeners to the submit and delete buttons
 
-console.log("tst")
 $createUser.on("click", createNewUser);
 $signIn.on("click", createNewUser);
 //$usersList.on("click", ".delete", handleDeleteBtnClick);
+
+// refresh users gets new users from the db and repopulates the list
+// var refreshUsers = function() {
+//   API.getusers().then(function(data) {
+//     var $users = data.map(function(users) {
+//       var $a = $("<a>")
+//         .text(newUsers.text)
+//         .attr("href", "/users/" + newUsers.id);
+
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": newUsers.id
+//         })
+//         .append($a);
+
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("ｘ");
+
+//       $li.append($button);
+
+//       return $li;
+//     });
+
+//     $usersList.empty();
+//     $usersList.append($users);
+//   });
+// };
