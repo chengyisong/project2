@@ -1,3 +1,8 @@
+var bcrypt = require('bcrypt');
+var saltRounds = 10;
+var myPlaintextPassword = 's0/\/\P4$$w0rD';
+var someOtherPlaintextPassword = 'not_bacon';
+
 // Get refrences to sign in
 var $name = $("#signInName").val().trim();
 var $password = $("#signInPassn").val().trim();
@@ -131,6 +136,6 @@ var handleDeleteBtnClick = function() {
 
 // Add event listeners to the submit and delete buttons
 
-
+console.log("tst")
 $createUser.on("click", createNewUser);
 $usersList.on("click", ".delete", handleDeleteBtnClick);
