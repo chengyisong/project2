@@ -87,3 +87,7 @@ select {
 #highDisplayDiv {
   width: 100%;
 }
+
+#backtoScoreLink {
+  float: right;
+}

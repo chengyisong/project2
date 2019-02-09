@@ -1,10 +1,10 @@
 //var $usersList = $("#users-list");
 var $createUser = $("#createBtn");
 var $signIn = $("#signInBtn");
-var bcrypt = require('bcrypt');
-var saltRounds = 10;
-var myPlaintextPassword = 's0/\/\P4$$w0rD';
-var someOtherPlaintextPassword = 'not_bacon';
+// var bcrypt = require('bcrypt');
+// var saltRounds = 10;
+// var myPlaintextPassword = 's0/\/\P4$$w0rD';
+// var someOtherPlaintextPassword = 'not_bacon';
 
 // The API object contains methods for each kind of request we'll make
 var API = {
