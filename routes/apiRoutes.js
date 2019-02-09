@@ -22,8 +22,8 @@ module.exports = function(app) {
 
   // Create a new user
   app.post("/api/users", function(req, res) {
-    db.users.
-      create({
+    db.users
+      .create({
         name: req.body.name,
         pictureurl: req.body.pic,
         catDog: req.body.catDog,
