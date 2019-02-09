@@ -33,16 +33,5 @@ module.exports = function(app) {
       .then(function(dbPost) {
         res.json(dbPost);
       });
-
-    db.users.create(req.body).then(function(dbUsers) {
-      res.json(dbUsers);
-    });
-  });
-
-  // Delete an users by id
-  app.delete("/api/users/:id", function(req, res) {
-    db.users.destroy({ where: { id: req.params.id } }).then(function(dbUsers) {
-      res.json(dbUsers);
-    });
   });
 };

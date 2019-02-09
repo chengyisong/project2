@@ -1,6 +1,10 @@
 //var $usersList = $("#users-list");
 var $createUser = $("#createBtn");
 var $signIn = $("#signInBtn");
+// var bcrypt = require('bcrypt');
+// var saltRounds = 10;
+// var myPlaintextPassword = 's0/\/\P4$$w0rD';
+// var someOtherPlaintextPassword = 'not_bacon';
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -13,10 +17,6 @@ var API = {
       url: "api/users",
       data: JSON.stringify(users)
     });
-
-    
-  
-
   },
   getusers: function() {
     return $.ajax({
@@ -132,7 +132,7 @@ var handleDeleteBtnClick = function() {
 
 // Add event listeners to the submit and delete buttons
 
-
+console.log("tst")
 $createUser.on("click", createNewUser);
 $signIn.on("click", createNewUser);
 //$usersList.on("click", ".delete", handleDeleteBtnClick);

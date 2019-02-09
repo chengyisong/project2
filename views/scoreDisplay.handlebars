@@ -15,8 +15,8 @@
             <ul id="top-list" class="list-group">
               {{#each users}}
               <li data-id="{{this.id}}" class="list-group-item">
-                <a href="example/{{this.id}}">{{this.text}}</a>
-                <button class="btn btn-danger float-right delete">ｘ</button>
+                <a href="/user/{{this.id}}">{{this.name}}</a>
+                
               </li>
               {{/each}}
             </ul>
@@ -36,10 +36,16 @@
           <div class="card-body" id="highDisplayDiv">
             <ul id="top-list-cat" class="list-group">
               {{#each users}}
-              <li data-id="{{this.id}}" class="list-group-item">
-                <a href="example/{{this.id}}">{{this.text}}</a>
-                <button class="btn btn-danger float-right delete">ｘ</button>
-              </li>
+                {{@catDog}}: {{this}}
+              {{/each}}
+              
+              
+              {{#each users}}
+                {{#if isCat}}
+                <li data-id="{{this.id}}" class="list-group-item">
+                  <a href="/user/{{this.id}}">{{this.name}}</a>
+                </li>
+                {{/if}}
               {{/each}}
             </ul>
           </div>
@@ -67,3 +73,4 @@
 
   </div>
 </div>
+

@@ -22,9 +22,9 @@ module.exports = function(app) {
 
   // Load users page and pass in an users by id
   app.get("/user/:id", function(req, res) {
-    db.users.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
-      res.render("/userfile", {
-        user: dbUser
+    db.users.findOne({ where: { id: req.params.id } }).then(function(dbUsers) {
+      res.render("userfile", {
+        users: dbUsers
       });
     });
   });
