@@ -22,12 +22,14 @@ module.exports = function(app) {
 
   // Create a new user
   app.post("/api/users", function(req, res) {
-    db.users.create({
-      name: req.body.name,
-      catDog: req.body.catDog,
-      city: req.body.city,
-      password: req.body.password
-    })
+    db.users.
+      create({
+        name: req.body.name,
+        pictureurl: req.body.pic,
+        catDog: req.body.catDog,
+        city: req.body.city,
+        password: req.body.password
+      })
       .then(function(dbPost) {
         res.json(dbPost);
       });
