@@ -76,9 +76,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="./js/index.js"></script>
 <script>
-    $("#score").text(localStorage.getItem("currentScore"))
-    $("#createBtn")onclick = function () {
-        location.href = "/score";
-    };
+ $( ".btn-primary" ).click(function() {
+    window.location.pathname = '/score';
+  });
 </script>
 
