@@ -1,14 +1,10 @@
 //var $usersList = $("#users-list");
 var $createUser = $("#createBtn");
 var $signIn = $("#signInBtn");
-// var bcrypt = require('bcrypt');
-// var saltRounds = 10;
-// var myPlaintextPassword = 's0/\/\P4$$w0rD';
-// var someOtherPlaintextPassword = 'not_bacon';
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveusers: function(users) {
+  saveusers: function (users) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
@@ -18,16 +14,17 @@ var API = {
       data: JSON.stringify(users)
     });
   },
-  getusers: function() {
+  getusers: function () {
     return $.ajax({
       url: "api/users",
       type: "GET"
     });
   },
-  deleteusers: function(id) {
+  updateusers: function (users) {
     return $.ajax({
-      url: "api/users/" + id,
-      type: "DELETE"
+      url: "api/users",
+      type: "PUT",
+      data: users,
     });
   }
 };
@@ -63,48 +60,60 @@ var API = {
 
 // createNewUser is called whenever we submit a new users
 // Save the new users to the db and refresh the list
-var createNewUser = function(event) {
+var createNewUser = function (event) {
   event.preventDefault();
-//get refrences to create an account
-let $newName = $("#createName").val().trim();
-let $newPass = $("#createPass").val().trim();
-let $pic = $("#createPic").val().trim();
-let $catOrDog = $("#catDog").val().trim();
-let $city = $("#city").val().trim();
+  //get refrences to create an account
+  let $newName = $("#createName").val().trim();
+  let $newPass = $("#createPass").val().trim();
+  let $pic = $("#createPic").val().trim();
+  let $catOrDog = $("#catDog").val().trim();
+  let $city = $("#city").val().trim();
+  let $currenthighscore
+  if (localStorage.getItem("currentScore")) {
+    $currenthighscore = localStorage.getItem("currentScore");
+  } else {
+    $currenthighscore = "0"
+  }
 
   var newUsers = {
-      name: $newName,
-      password: $newPass,
-      catDog: $catOrDog,
-      pic: $pic,
-      city: $city,
+    name: $newName,
+    password: $newPass,
+    catDog: $catOrDog,
+    pic: $pic,
+    city: $city,
+    currenthighscore: $currenthighscore,
   };
 
-  if (!(newUsers.name && 
-        newUsers.password && 
-        newUsers.catDog && 
-        newUsers.pic && 
-        newUsers.city)) {
+  if (!(newUsers.name &&
+    newUsers.password &&
+    newUsers.catDog &&
+    newUsers.pic &&
+    newUsers.city)) {
     alert("You left a few fileds blank");
     return;
   }
 
-  console.log(newUsers)
-  
-  API.saveusers(newUsers)
+  API.saveusers(newUsers);
+
+  location.href = "/score";
 
 };
 
-var signIn = function(event) {
+var signIn = function (event) {
   event.preventDefault();
   // Get refrences to sign in
   var $name = $("#signInName").val().trim();
-  var $password = $("#signInPassn").val().trim();
-  var $signIn = $("#signInBtn").val().trim();
+  var $password = $("#signInPass").val().trim();
+  if (localStorage.getItem("currentScore")) {
+    $currenthighscore = localStorage.getItem("currentScore");
+  } else {
+    $currenthighscore = "0"
+  }
 
   var users = {
-      name: $name,
-      password: $password,
+    name: $name,
+    password: $password,
+    currenthighscore: $currenthighscore,
   };
 
   if (!(users.name && users.password)) {
@@ -112,27 +121,24 @@ var signIn = function(event) {
     return;
   }
 
-  API.saveusers(users)
-
-  console.log(users)
+  API.updateusers(users);
+  location.href = "/score";
 };
 
 
 // handleDeleteBtnClick is called when an users's delete button is clicked
 // Remove the users from the db and refresh the list
-var handleDeleteBtnClick = function() {
+var handleDeleteBtnClick = function () {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
-  API.deleteusers(idToDelete).then(function() {
+  API.deleteusers(idToDelete).then(function () {
     refreshUsers();
   });
 };
 
 // Add event listeners to the submit and delete buttons
-
-console.log("tst")
 $createUser.on("click", createNewUser);
-$signIn.on("click", createNewUser);
+$signIn.on("click", signIn);
 //$usersList.on("click", ".delete", handleDeleteBtnClick);

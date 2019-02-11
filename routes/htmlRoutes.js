@@ -41,12 +41,16 @@ module.exports = function(app) {
 
   // Render score page for any unmatched routes
   app.get("/score", function(req, res) {
-    db.users.findAll({}).then(function(dbUsers) {
-      res.render("scoreDisplay", {
-        msg: "See who is playing",
-        users: dbUsers
+    db.users
+      .findAll({
+        limit: 10,
+        order: [["currenthighscore", "DESC"]]
+      })
+      .then(function(dbUsers) {
+        res.render("scoreDisplay", {
+          users: dbUsers
+        });
       });
-    });
   });
 
   // Render 404 page for any unmatched routes
