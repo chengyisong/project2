@@ -6,6 +6,9 @@ var $signIn = $("#signInBtn");
 // var myPlaintextPassword = 's0/\/\P4$$w0rD';
 // var someOtherPlaintextPassword = 'not_bacon';
 
+let score = localStorage.getItem("currentScore")
+    $("#score").text(score)
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveusers: function(users) {
@@ -24,13 +27,77 @@ var API = {
       type: "GET"
     });
   },
-  deleteusers: function(id) {
+  updateUsers: function(id) {
     return $.ajax({
       url: "api/users/" + id,
-      type: "DELETE"
+      type: "PUT"
     });
   }
 };
+
+// createNewUser is called whenever we submit a new users
+// Save the new users to the db and refresh the list
+var createNewUser = function(event) {
+  event.preventDefault();
+//get refrences to create an account
+let $newName = $("#createName").val().trim();
+let $newPass = $("#createPass").val().trim();
+let $pic = $("#createPic").val().trim();
+let $catOrDog = $("#catDog").val().trim();
+let $city = $("#city").val().trim();
+
+  var newUsers = {
+      name: $newName,
+      score: score,
+      password: $newPass,
+      catDog: $catOrDog,
+      pic: $pic,
+      city: $city,
+  };
+
+  if (!(newUsers.name && 
+        newUsers.password && 
+        newUsers.catDog && 
+        newUsers.pic && 
+        newUsers.city)) {
+    alert("You left a few fileds blank");
+    return;
+  }
+
+  console.log(newUsers)
+  
+  API.saveusers(newUsers)
+
+};
+
+var signIn = function(event) {
+  event.preventDefault();
+  // Get refrences to sign in
+  var $name = $("#signInName").val().trim();
+  var $password = $("#signInPassn").val().trim();
+
+  var users = {
+      score: score,
+      name: $name,
+      password: $password,
+  };
+
+  if (!(users.name && users.password)) {
+    alert("Please input a username and password");
+    return;
+  }
+
+  API.updateUsers(users)
+
+  console.log(users)
+};
+
+// Add event listeners to the submit and delete buttons
+
+console.log("tst")
+$createUser.on("click", createNewUser);
+$signIn.on("click", createNewUser);
+//$usersList.on("click", ".delete", handleDeleteBtnClick);
 
 // refresh users gets new users from the db and repopulates the list
 // var refreshUsers = function() {
@@ -61,78 +128,14 @@ var API = {
 //   });
 // };
 
-// createNewUser is called whenever we submit a new users
-// Save the new users to the db and refresh the list
-var createNewUser = function(event) {
-  event.preventDefault();
-//get refrences to create an account
-let $newName = $("#createName").val().trim();
-let $newPass = $("#createPass").val().trim();
-let $pic = $("#createPic").val().trim();
-let $catOrDog = $("#catDog").val().trim();
-let $city = $("#city").val().trim();
-
-  var newUsers = {
-      name: $newName,
-      password: $newPass,
-      catDog: $catOrDog,
-      pic: $pic,
-      city: $city,
-  };
-
-  if (!(newUsers.name && 
-        newUsers.password && 
-        newUsers.catDog && 
-        newUsers.pic && 
-        newUsers.city)) {
-    alert("You left a few fileds blank");
-    return;
-  }
-
-  console.log(newUsers)
-  
-  API.saveusers(newUsers)
-
-};
-
-var signIn = function(event) {
-  event.preventDefault();
-  // Get refrences to sign in
-  var $name = $("#signInName").val().trim();
-  var $password = $("#signInPassn").val().trim();
-  var $signIn = $("#signInBtn").val().trim();
-
-  var users = {
-      name: $name,
-      password: $password,
-  };
-
-  if (!(users.name && users.password)) {
-    alert("Please input a username and password");
-    return;
-  }
-
-  API.saveusers(users)
-
-  console.log(users)
-};
-
-
 // handleDeleteBtnClick is called when an users's delete button is clicked
 // Remove the users from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+// var handleDeleteBtnClick = function() {
+//   var idToDelete = $(this)
+//     .parent()
+//     .attr("data-id");
 
-  API.deleteusers(idToDelete).then(function() {
-    refreshUsers();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-
-console.log("tst")
-$createUser.on("click", createNewUser);
-$signIn.on("click", createNewUser);
-//$usersList.on("click", ".delete", handleDeleteBtnClick);
+//   API.deleteusers(idToDelete).then(function() {
+//     refreshUsers();
+//   });
+// };
