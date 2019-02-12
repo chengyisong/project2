@@ -64,7 +64,8 @@ body {
 }
 
 .card {
-  height: 500px;
+  margin: 2%;
+  min-height: 500px;
   background-color: rgba(255, 255, 255, 0.925);
 }
 
@@ -121,4 +122,8 @@ select {
 
 .autoFlow {
   overflow: scroll;
+}
+
+.error {
+  color: red;
 }
