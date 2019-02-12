@@ -26,3 +26,6 @@ Don't get caught on an ice block or it's `GAME OVER!`
 - ES lint
 - Travis
 - bcrypt
+- chai
+- chi-http
+- expect
