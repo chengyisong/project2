@@ -77,7 +77,7 @@ module.exports = function(app) {
         }
       });
   });
-    app.put("/api/users", function(req, res) {
+  app.put("/api/users", function(req, res) {
     db.users
       .update(users, {
         where: {
@@ -89,4 +89,5 @@ module.exports = function(app) {
         console.log(dbUsers);
         res.json(dbUsers);
       });
-    }
+  });
+};
