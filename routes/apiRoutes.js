@@ -50,8 +50,13 @@ module.exports = function(app) {
     db.users
       .findOne({ where: { name: req.body.name } })
       .then(function(dbUsers) {
+        if (!dbUsers) {
+          console.log("could not find user");
+          // return res.status(401).render("unauthenticated");
+          res.redirect("unauthenticated");
+        }
         // only update if new score is higher than original score
-        if (req.body.currenthighscore > dbUsers.currenthighscore) {
+        else if (req.body.currenthighscore > dbUsers.currenthighscore) {
           // check password
           hashedPass = dbUsers.password;
           bcrypt.compare(req.body.password, hashedPass, function(err, result) {
@@ -72,6 +77,7 @@ module.exports = function(app) {
                 });
             } else {
               console.log("Wrong password");
+              res.redirect("unauthenticated");
             }
           });
         }
