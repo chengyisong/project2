@@ -85,9 +85,40 @@ select {
 }
 
 #highDisplayDiv {
-  width: 100%;
+  width: 60%;
+  margin-left: 32%;
 }
 
 #backtoScoreLink {
   float: right;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+#userDisplayDiv {
+  font-size: 20px;
+}
+
+#scoreDisplayScore {
+  font-weight: bold;
+  color: red;
+  margin-left: 2%;
+}
+
+#scoreDisplay {
+  float: right;
+}
+
+#scoreDisplayPic {
+  float: left;
+  margin-top: 5px;
+  margin-right: 20px;
+}
+
+#displayLabel {
+  margin-left: 100px;
+}
+
+.autoFlow {
+  overflow: scroll;
 }
