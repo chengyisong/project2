@@ -2,6 +2,9 @@
 var $createUser = $("#createBtn");
 var $signIn = $("#signInBtn");
 
+let score = localStorage.getItem("currentScore")
+    $("#score").text(score)
+
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveusers: function (users) {
@@ -20,43 +23,16 @@ var API = {
       type: "GET"
     });
   },
+
   updateusers: function (users) {
     return $.ajax({
       url: "api/users",
       type: "PUT",
       data: users,
+
     });
   }
 };
-
-// refresh users gets new users from the db and repopulates the list
-// var refreshUsers = function() {
-//   API.getusers().then(function(data) {
-//     var $users = data.map(function(users) {
-//       var $a = $("<a>")
-//         .text(newUsers.text)
-//         .attr("href", "/users/" + newUsers.id);
-
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item",
-//           "data-id": newUsers.id
-//         })
-//         .append($a);
-
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("ｘ");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $usersList.empty();
-//     $usersList.append($users);
-//   });
-// };
 
 // createNewUser is called whenever we submit a new users
 // Save the new users to the db and refresh the list
@@ -82,6 +58,7 @@ var createNewUser = function (event) {
     pic: $pic,
     city: $city,
     currenthighscore: $currenthighscore,
+
   };
 
   if (!(newUsers.name &&
@@ -114,6 +91,7 @@ var signIn = function (event) {
     name: $name,
     password: $password,
     currenthighscore: $currenthighscore,
+
   };
 
   if (!(users.name && users.password)) {
@@ -138,7 +116,49 @@ var handleDeleteBtnClick = function () {
   });
 };
 
+
 // Add event listeners to the submit and delete buttons
 $createUser.on("click", createNewUser);
 $signIn.on("click", signIn);
 //$usersList.on("click", ".delete", handleDeleteBtnClick);
+
+// refresh users gets new users from the db and repopulates the list
+// var refreshUsers = function() {
+//   API.getusers().then(function(data) {
+//     var $users = data.map(function(users) {
+//       var $a = $("<a>")
+//         .text(newUsers.text)
+//         .attr("href", "/users/" + newUsers.id);
+
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item",
+//           "data-id": newUsers.id
+//         })
+//         .append($a);
+
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("ｘ");
+
+//       $li.append($button);
+
+//       return $li;
+//     });
+
+//     $usersList.empty();
+//     $usersList.append($users);
+//   });
+// };
+
+// handleDeleteBtnClick is called when an users's delete button is clicked
+// Remove the users from the db and refresh the list
+// var handleDeleteBtnClick = function() {
+//   var idToDelete = $(this)
+//     .parent()
+//     .attr("data-id");
+
+//   API.deleteusers(idToDelete).then(function() {
+//     refreshUsers();
+//   });
+// };
