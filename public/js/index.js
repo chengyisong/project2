@@ -2,8 +2,12 @@
 var $createUser = $("#createBtn");
 var $signIn = $("#signInBtn");
 
-let score = localStorage.getItem("currentScore")
-    $("#score").text(score)
+function userError(inputBox, errorId, missing) {
+  if(!inputBox){
+    $(errorId+"-error").text("Please input a " + missing);
+    return
+  };
+};
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -23,16 +27,15 @@ var API = {
       type: "GET"
     });
   },
-
   updateusers: function (users) {
     return $.ajax({
       url: "api/users",
       type: "PUT",
       data: users,
-
     });
   }
 };
+
 
 // createNewUser is called whenever we submit a new users
 // Save the new users to the db and refresh the list
@@ -58,7 +61,6 @@ var createNewUser = function (event) {
     pic: $pic,
     city: $city,
     currenthighscore: $currenthighscore,
-
   };
 
   if (!(newUsers.name &&
@@ -66,9 +68,15 @@ var createNewUser = function (event) {
     newUsers.catDog &&
     newUsers.pic &&
     newUsers.city)) {
-    alert("You left a few fileds blank");
+      $(".userError-create").text("some fields were left blank")
     return;
   }
+
+  // userError(newUsers.name, "#create-name", "name");
+  // userError(newUsers.password, "#create-password", "password");
+  // userError(newUsers.catDog, "#create-catDog", "cat or dog preferance");
+  // userError(newUsers.name, "#create-pic", "photo");
+  // userError(newUsers.name, "#create-city", "city");
 
   API.saveusers(newUsers);
 
@@ -91,13 +99,16 @@ var signIn = function (event) {
     name: $name,
     password: $password,
     currenthighscore: $currenthighscore,
-
   };
 
-  if (!(users.name && users.password)) {
-    alert("Please input a username and password");
+  if(!users.name || !users.password) {
+    $(".userError-signIn").text("Please input a username and password.")
     return;
   }
+
+  // userError(users.name, "#signIn-name", "name");
+  // userError(users.password, "#signIn-password", "password")
+ 
 
   API.updateusers(users);
   location.href = "/score";
@@ -115,7 +126,6 @@ var handleDeleteBtnClick = function () {
     refreshUsers();
   });
 };
-
 
 // Add event listeners to the submit and delete buttons
 $createUser.on("click", createNewUser);
@@ -148,17 +158,5 @@ $signIn.on("click", signIn);
 
 //     $usersList.empty();
 //     $usersList.append($users);
-//   });
-// };
-
-// handleDeleteBtnClick is called when an users's delete button is clicked
-// Remove the users from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
-
-//   API.deleteusers(idToDelete).then(function() {
-//     refreshUsers();
 //   });
 // };

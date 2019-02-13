@@ -39,6 +39,11 @@ module.exports = function(app) {
     res.render("input");
   });
 
+  // Render input form page for any unmatched routes
+  app.get("/unauthenticated", function(req, res) {
+    res.render("unauthenticated");
+  });
+
   // Render score page for any unmatched routes
   app.get("/score", function(req, res) {
     db.users

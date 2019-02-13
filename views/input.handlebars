@@ -4,10 +4,13 @@
     <h1>Record Your Highest Score!</h1>
     <p class="scoreLabel"> Your Score: <span id="score"></span></p>
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-lg-6">
             <div class="card">
-                <div class="card-header"><h3>Sign in to Your Account: </h3></div>
+                <div class="card-header">
+                    <h3>Sign in to Your Account: </h3>
+                </div>
                 <div class="card-body">
+                    <div class="card-body userError-signIn"></div>
                     <form class="clearfix mb-4" action="PUT">
                         <div class="form-group">
                             <label for="userName">User Name</label>
@@ -19,15 +22,17 @@
                         </div>
                         <button id="signInBtn" class="btn btn-primary float-right">Sign In</button>
                     </form>
-
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-lg-6">
             <div class="card">
-                <div class="card-header"><h2>Or... Create a New Account:</h2></div>
+                <div class="card-header">
+                    <h2>Or... Create a New Account:</h2>
+                </div>
                 <div class="card-body">
+                    <div class="card-body userError-create"></div>
                     <form class="clearfix mb-4" action="POST">
                         <div class="form-group">
                             <label for="userName">User Name</label>
@@ -35,14 +40,18 @@
                         </div>
                         <div class="form-group">
                             <label for="userPass">Password</label>
+
                             <input type="text" id="createPass" class="form-control" placeholder="Enter Your Password">
                         </div>
                         <div class="form-group">
                             <label for="picURL">Profile Picture</label>
-                            <input type="text" id="createPic" class="form-control" placeholder="Enter a URL for your profile picture">
+
+                            <input type="text" id="createPic" class="form-control"
+                                placeholder="Enter a URL for your profile picture">
                         </div>
                         <div class="form-group">
                             <label for="catDog">Cat Person or Dog Person? </label>
+
                             <select name="catDog" id="catDog">
                                 <option value="cat">I love cats! Meow!</option>
                                 <option value="dog">Dogs are cuter! Woof!</option>
@@ -50,6 +59,7 @@
                         </div>
                         <div class="form-group">
                             <label for="city">City You Live In: </label>
+
                             <select name="city" id="city">
                                 <option value="bellevue">Bellevue</option>
                                 <option value="bothell">Bothell</option>
@@ -78,8 +88,10 @@
 <script>
 
     $("#score").text(localStorage.getItem("currentScore"))
-    $(".btn-primary").onclick = function () {
-        location.href = "/score";
-
+    {{!-- {
+        {
+            !--$("button").onclick = function () {
+                window.location.pathname = "/score";
+            } --}
+    } --}}
 </script>
-

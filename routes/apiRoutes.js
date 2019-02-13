@@ -5,10 +5,36 @@ var hashedPass = "";
 
 module.exports = function(app) {
   // Get all users
+  //   app.get("/api/users", function(req, res) {
+  //     db.users.findAll({}).then(function(dbUsers) {
+  //       res.json(dbUsers);
+  //     });
+  //   });
+
+  // Show top 5 high score for Cat people in decending order
   app.get("/api/users", function(req, res) {
-    db.users.findAll({}).then(function(dbUsers) {
-      res.json(dbUsers);
-    });
+    db.users
+      .findAll({
+        where: { catDog: true },
+        limit: 5,
+        order: [["currenthighscore", "DESC"]]
+      })
+      .then(function(dbUsers) {
+        res.json(dbUsers);
+      });
+  });
+
+  // Show top 5 high score for Cat people in decending order
+  app.get("/api/users", function(req, res) {
+    db.users
+      .findAll({
+        where: { catDog: false },
+        limit: 5,
+        order: [["currenthighscore", "DESC"]]
+      })
+      .then(function(dbUsers) {
+        res.json(dbUsers);
+      });
   });
 
   // Show top ten high score in decending order
@@ -50,8 +76,13 @@ module.exports = function(app) {
     db.users
       .findOne({ where: { name: req.body.name } })
       .then(function(dbUsers) {
+        if (!dbUsers) {
+          console.log("could not find user");
+          // return res.status(401).render("unauthenticated");
+          res.redirect("unauthenticated");
+        }
         // only update if new score is higher than original score
-        if (req.body.currenthighscore > dbUsers.currenthighscore) {
+        else if (req.body.currenthighscore > dbUsers.currenthighscore) {
           // check password
           hashedPass = dbUsers.password;
           bcrypt.compare(req.body.password, hashedPass, function(err, result) {
@@ -72,6 +103,7 @@ module.exports = function(app) {
                 });
             } else {
               console.log("Wrong password");
+              res.redirect("unauthenticated");
             }
           });
         }
