@@ -7,7 +7,7 @@
 ###### Visit the page: [Snowbirding]: https://github.com/chengyisong/project2
 
 **Instructions:**
-Snowbirng is a simple videogame attached to a database that tracks user scores. 
+Snowbirding is a simple videogame attached to a database that tracks user scores. 
 Jump the penguin over the ice blocks.
 You can hold spacebar to jump further.
 Don't get caught on an ice block or it's `GAME OVER!`
