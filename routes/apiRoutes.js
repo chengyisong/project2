@@ -10,7 +10,7 @@ module.exports = function(app) {
   //       res.json(dbUsers);
   //     });
   //   });
- 
+
   // Show top 5 high score for Cat people in decending order
   app.get("/api/users", function(req, res) {
     db.users
