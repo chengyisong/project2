@@ -5,17 +5,17 @@ var hashedPass = "";
 
 module.exports = function(app) {
   // Get all users
-//   app.get("/api/users", function(req, res) {
-//     db.users.findAll({}).then(function(dbUsers) {
-//       res.json(dbUsers);
-//     });
-//   });
-  
+  //   app.get("/api/users", function(req, res) {
+  //     db.users.findAll({}).then(function(dbUsers) {
+  //       res.json(dbUsers);
+  //     });
+  //   });
+ 
   // Show top 5 high score for Cat people in decending order
   app.get("/api/users", function(req, res) {
     db.users
       .findAll({
-        where: {catDog: true},
+        where: { catDog: true },
         limit: 5,
         order: [["currenthighscore", "DESC"]]
       })
@@ -23,12 +23,12 @@ module.exports = function(app) {
         res.json(dbUsers);
       });
   });
-  
+
   // Show top 5 high score for Cat people in decending order
   app.get("/api/users", function(req, res) {
     db.users
       .findAll({
-        where: {catDog: false},
+        where: { catDog: false },
         limit: 5,
         order: [["currenthighscore", "DESC"]]
       })
@@ -36,7 +36,7 @@ module.exports = function(app) {
         res.json(dbUsers);
       });
   });
-  
+
   // Show top ten high score in decending order
   app.get("/api/users", function(req, res) {
     db.users
