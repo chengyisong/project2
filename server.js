@@ -19,6 +19,21 @@ app.engine(
     defaultLayout: "main"
   })
 );
+
+// app.engine("handlebars", exphbs({
+//   helpers: {
+//       isCat: function (catDog) {
+//         if (catDog === "cat") {
+//           return true;
+//         } else {
+//           return false;
+//         }
+//       }
+//   },
+//   partialsDir: ['views/partials/'],
+//   defaultLayout: 'main'
+// }));
+
 app.set("view engine", "handlebars");
 
 // Routes

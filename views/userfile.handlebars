@@ -3,17 +3,18 @@
 <div class="container">
   <div class="row">
     <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Example</h5>
-          <p>
-            <strong>ID</strong>: {{example.id}}</p>
-          <p>
-          <p>
-            <strong>Text</strong>: {{example.text}}</p>
-          <p>
-            <strong>Description:</strong> {{example.description}}</p>
-            <a href="/">← Back To Home</a>
+      <div class="card mt-4" class="autoFlow">
+        <div class="card-header">
+          <h5 class="card-title">User Profile</h5>
+        </div>
+        <div class="card-body" id="userDisplayDiv">
+          <p><strong>User Name    </strong>: {{users.name}}</p>
+          <p><strong>Picture    </strong>: <img src={{users.pictureurl}} width="150px" height="150px"></p>
+          <p><strong>Cat/Dog Person:    </strong> {{users.catDog}}</p>
+          <p><strong>City:    </strong> {{users.city}}</p>
+          <p><strong>Highest Score:    </strong> {{users.currenthighscore}}</p>
+
+          <a href="/score" id="backtoScoreLink">← Back To Scores</a>
         </div>
       </div>
     </div>
