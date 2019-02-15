@@ -28,14 +28,20 @@ var API = {
     });
   },
   updateusers: function (users) {
-    return $.ajax({
+     $.ajax({
       url: "api/users",
       type: "PUT",
       data: users,
-    });
-  }
+    }).catch(
+      function(resp){
+        console.log(resp.status);
+        if(resp.status === 401) {
+          location.href="/unauthenticated";
+        }
+      }
+      );
+    }
 };
-
 
 // createNewUser is called whenever we submit a new users
 // Save the new users to the db and refresh the list
@@ -71,12 +77,6 @@ var createNewUser = function (event) {
       $(".userError-create").text("some fields were left blank")
     return;
   }
-
-  // userError(newUsers.name, "#create-name", "name");
-  // userError(newUsers.password, "#create-password", "password");
-  // userError(newUsers.catDog, "#create-catDog", "cat or dog preferance");
-  // userError(newUsers.name, "#create-pic", "photo");
-  // userError(newUsers.name, "#create-city", "city");
 
   API.saveusers(newUsers);
 
