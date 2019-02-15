@@ -4,10 +4,10 @@
 [logo]: https://image.shutterstock.com/image-vector/active-penguins-winter-sports-vector-260nw-1014490555.jpg "Logo Title Text 2"
 
 
-###### Visit the page: [Snowbirding]: https://github.com/chengyisong/project2
+###### Visit the page: [Snowbirding]: https://murmuring-retreat-47548.herokuapp.com/
 
 **Instructions:**
-Snowbirng is a simple videogame attached to a database that tracks user scores. 
+Snowbirding is a simple videogame attached to a database that tracks user scores. 
 Jump the penguin over the ice blocks.
 You can hold spacebar to jump further.
 Don't get caught on an ice block or it's `GAME OVER!`
