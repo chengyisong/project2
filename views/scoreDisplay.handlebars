@@ -8,6 +8,7 @@
     <a href="/" id="backtoScoreLink">← Back To Game</a>
     <div class="row">
       <div class="col-12">
+        <p class="scoreLabel"> Your Current Score: <span id="score"></span></p>
         <div class="card"  id="highDisplayDiv">
           <div class="card-header">
             <h3>Top 10 Highest Scores:</h3>
@@ -71,3 +72,7 @@
     </div>
   </div>
 </div>
+
+<script>
+   $("#score").text(localStorage.getItem("currentScore"))
+</script>
