@@ -79,7 +79,7 @@ module.exports = function(app) {
         if (!dbUsers) {
           console.log("could not find user");
           // return res.status(401).render("unauthenticated");
-          res.redirect("unauthenticated");
+          res.redirect("/unauthenticated");
         }
         // only update if new score is higher than original score
         else if (req.body.currenthighscore > dbUsers.currenthighscore) {
@@ -103,7 +103,7 @@ module.exports = function(app) {
                 });
             } else {
               console.log("Wrong password");
-              res.redirect("unauthenticated");
+              res.redirect("/unauthenticated");
             }
           });
         }
