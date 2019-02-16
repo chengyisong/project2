@@ -34,7 +34,6 @@
           <div class="card-body">
             <ul id="top-list-cat" class="list-group">
               {{#each catUsers}}
-
               <li data-id="{{this.id}}" class="list-group-item">
                 <span><img src={{this.pictureurl}} width="50px" height="50px" id="scoreDisplayPic"></p></span>
                 <span><strong>User Name: </strong><a href="/user/{{this.id}}">{{this.name}}</a></span>
@@ -54,7 +53,7 @@
           </div>
           <div class="card-body">
             <ul id="top-list-dog" class="list-group">
-              {{#each dogDsers}}
+              {{#each dogUsers}}
               <li data-id="{{this.id}}" class="list-group-item">
                 <span><img src={{this.pictureurl}} width="50px" height="50px" id="scoreDisplayPic"></p></span>
                 <span><strong>User Name: </strong><a href="/user/{{this.id}}">{{this.name}}</a></span>

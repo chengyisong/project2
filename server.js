@@ -22,7 +22,7 @@ app.engine(
 
 // app.engine("handlebars", exphbs({
 //   helpers: {
-//       isCat: function (catDog) { 
+//       isCat: function (catDog) {
 //         if (catDog === "cat") {
 //           return true;
 //         } else {
