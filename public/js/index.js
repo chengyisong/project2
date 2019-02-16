@@ -116,7 +116,7 @@ var signIn = function (event) {
  
 
   API.updateusers(users);
-  location.href = "/score";
+  // location.href = "/score";
 };
 
 
