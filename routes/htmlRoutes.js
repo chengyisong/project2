@@ -44,29 +44,26 @@ module.exports = function(app) {
     res.render("unauthenticated");
   });
 
-  var findTop = db.users.findAll({
-    limit: 10,
-    order: [["currenthighscore", "DESC"]]
-  });
-
-  var findCat = db.users.findAll({
-    where: {
-      catDog: "cat"
-    },
-    limit: 10,
-    order: [["currenthighscore", "DESC"]]
-  });
-
-  var findDog = db.users.findAll({
-    where: {
-      catDog: "dog"
-    },
-    limit: 10,
-    order: [["currenthighscore", "DESC"]]
-  });
-
   // Render score page for any unmatched routes
   app.get("/score", function(req, res) {
+    var findTop = db.users.findAll({
+      limit: 10,
+      order: [["currenthighscore", "DESC"]]
+    });
+    var findCat = db.users.findAll({
+      where: {
+        catDog: "cat"
+      },
+      limit: 10,
+      order: [["currenthighscore", "DESC"]]
+    });
+    var findDog = db.users.findAll({
+      where: {
+        catDog: "dog"
+      },
+      limit: 10,
+      order: [["currenthighscore", "DESC"]]
+    });
     Promise.all([findTop, findCat, findDog]).then(function(result) {
       res.render("scoreDisplay", {
         users: result[0],

@@ -78,6 +78,11 @@ var createNewUser = function (event) {
     return;
   }
 
+  if (newUsers.name.length > 15) {
+      $(".userError-create").text("Sorry, user name is limited to 15 characters")
+    return;
+  }
+
   API.saveusers(newUsers);
 
   location.href = "/score";
