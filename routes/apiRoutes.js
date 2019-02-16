@@ -86,6 +86,7 @@ module.exports = function(app) {
           hashedPass = dbUsers.password;
           bcrypt.compare(req.body.password, hashedPass, function(err, result) {
             if (result === true) {
+              console.log("password confirmed");
               db.users
                 .update(
                   {

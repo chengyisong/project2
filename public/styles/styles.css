@@ -69,6 +69,7 @@ body {
   background-color: rgba(255, 255, 255, 0.925);
 }
 
+
 #signInBtn {
   margin-top: 185px;
 }
@@ -86,14 +87,36 @@ select {
 }
 
 #highDisplayDiv {
-  width: 60%;
-  margin-left: 32%;
+  /* width: 60%;
+  margin-left: 32%; */
+  background-color: rgba(98, 94, 136, 0.63);
+  min-height: 1000px;
+}
+
+#highDisplayDiv-Header {
+  background-color: rgba(63, 58, 87, 0.822)
+}
+.scoreTitle {
+  text-align: center;
+  color: rgb(205, 249, 255);
+  font-weight: bold;
+  font-size: 23px;
 }
 
 #backtoScoreLink {
   float: right;
   font-weight: bold;
   font-size: 25px;
+}
+
+i {
+  color: rgb(255, 253, 161);
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.fa-snowflake{
+  color: white;
 }
 
 #userDisplayDiv {
@@ -126,4 +149,9 @@ select {
 
 .error {
   color: red;
+}
+
+#newContainer {
+  width: 90%;
+  margin-left: 5%;
 }
