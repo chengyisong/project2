@@ -4,12 +4,6 @@ var saltRounds = 10;
 var hashedPass = "";
 
 module.exports = function(app) {
-  // Get all users
-  //   app.get("/api/users", function(req, res) {
-  //     db.users.findAll({}).then(function(dbUsers) {
-  //       res.json(dbUsers);
-  //     });
-  //   });
 
   // Show top 5 high score for Cat people in decending order
   app.get("/api/users", function(req, res) {

@@ -3,8 +3,12 @@
 USE  usersDB;
 
 
+
+alter table users change column createdAt createdAt datetime Not Null Default Current_Timestamp;
+
 INSERT INTO users (name, currenthighscore, pictureurl, catDog, city, password) 
 VALUES ("Kitty", 76788, "https://cdn3.vectorstock.com/i/1000x1000/01/77/businesswoman-character-avatar-icon-vector-12800177.jpg", "cat", "Other","1234");
+
 
  INSERT INTO users(name, currenthighscore, pictureurl, catDog, city, password) 
 VALUES ("Bill", 9769, "https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Bearded_Man-17-512.png", "cat", "Issaquah","1234");
